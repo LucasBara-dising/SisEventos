@@ -9,7 +9,7 @@ class Evento {
     private $descricao;
 
     // Construtor da classe
-    public function __construct($local, $data, $hora, $previsaoDePublico, $preco, $descricao) {
+    public function CadastraEvento($local, $data, $hora, $previsaoDePublico, $preco, $descricao) {
         $this->local = $local;
         $this->data = $data;
         $this->hora = $hora;
@@ -74,18 +74,6 @@ class Show extends Evento{
      private $cantor;
      private $tipoDeMusica;
  
-     // Construtor da classe
-     public function __construct($local, $data, $hora, $previsaoDePublico, $preco, $descricao, $cantor, $tipoDeMusica) {
-        $this->local = $local;
-        $this->data = $data;
-        $this->hora = $hora;
-        $this->previsaoDePublico = $previsaoDePublico;
-        $this->preco = $preco;
-        $this->descricao = $descricao;
-        $this->cantor = $cantor;
-        $this->tipoDeMusica = $tipoDeMusica;
-    }
- 
     // Métodos de acesso (getters e setters) para os atributos
     public function getCantor() {
         return $this->cantor;
@@ -100,6 +88,14 @@ class Show extends Evento{
     }
  
     public function setTipoDeMusica($tipoDeMusica) {
+        $this->tipoDeMusica = $tipoDeMusica;
+    }
+
+     // Construtor da classe
+    public function cadastraShow($local, $data, $hora, $previsaoDePublico, $preco, $descricao, $cantor, $tipoDeMusica) {
+        parent::CadastraEvento($local, $data, $hora, $previsaoDePublico, $preco, $descricao);
+
+        $this->cantor = $cantor;
         $this->tipoDeMusica = $tipoDeMusica;
     }
 
@@ -126,7 +122,7 @@ class Show extends Evento{
 
     public function ExibeTodosShow(){
         echo "Show: \n";
-        foreach ($this as $key => $value) {
+        foreach ($this as $value) {
             echo "Local: " . $this->local . "\n";
             echo "Data: " . $this->data . "\n";
             echo "Hora: " . $this->hora . "\n";
@@ -136,25 +132,8 @@ class Show extends Evento{
             echo "Cantor: " . $this->cantor . "\n";
             echo "Tipo de Música: " . $this->tipoDeMusica . "\n";
             echo "-------------------------------------------\n";
+
         }
+        echo "-------------------------------------------\n";
     }
 }
-
-//input
-$evento = new Show(
-    "Local do Evento",
-    "2023-08-24",
-    "20:00",
-    1000,
-    50.00,
-    "Descrição do Evento",
-    "Cantor do Show",
-    "Tipo de Música"
-);
-
-//select
-$evento->ExibeTodosShow();
-
-//select com filtro
-$evento->ExibeUmShow("Tipo");
-
