@@ -182,11 +182,13 @@
     //TO DO fazer melhorias
     function mostraExpecifica($tema){
         global $dadoFiltroShow;
-
+        echo("--------------------Um especifico------------------\n");
         switch($tema){
             case "Show":
                 global $arrayShows;
-                $array=$arrayShows;  
+                $array=$arrayShows; 
+
+                $key = array_search($dadoFiltroShow, array_column($array, "Local")); 
             break;
             
             default:
@@ -194,8 +196,6 @@
             break;
         }
 
-        echo("--------------------Um especifico------------------\n");
-        $key = array_search($dadoFiltroShow, array_column($array, "Local"));
         print_r($array[$key]);        
     }
 ?>

@@ -111,7 +111,7 @@ class Show extends Evento{
                 echo "Descrição: " . $this->descricao . "\n";
                 echo "Cantor: " . $this->cantor . "\n";
                 echo "Tipo de Música: " . $this->tipoDeMusica . "\n";
-                echo "-------------------------------------------\n";
+                echo "------------------------------------------\n";
             }
         }else{
             echo "Não encontrada";
