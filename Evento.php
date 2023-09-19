@@ -4,16 +4,14 @@ class Evento {
     private $local;
     private $data;
     private $hora;
-    private $previsaoDePublico;
     private $preco;
     private $descricao;
 
     // Construtor da classe
-    public function CadastraEvento($local, $data, $hora, $previsaoDePublico, $preco, $descricao) {
+    public function CadastraEvento($local, $data, $hora, $preco, $descricao) {
         $this->local = $local;
         $this->data = $data;
         $this->hora = $hora;
-        $this->previsaoDePublico = $previsaoDePublico;
         $this->preco = $preco;
         $this->descricao = $descricao;
     }
@@ -42,14 +40,6 @@ class Evento {
     //SETTS 
     public function setHora($hora) {
         $this->hora = $hora;
-    }
-
-    public function getPrevisaoDePublico() {
-        return $this->previsaoDePublico;
-    }
-
-    public function setPrevisaoDePublico($previsaoDePublico) {
-        $this->previsaoDePublico = $previsaoDePublico;
     }
 
     public function getPreco() {
@@ -92,48 +82,43 @@ class Show extends Evento{
     }
 
      // Construtor da classe
-    public function cadastraShow($local, $data, $hora, $previsaoDePublico, $preco, $descricao, $cantor, $tipoDeMusica) {
-        parent::CadastraEvento($local, $data, $hora, $previsaoDePublico, $preco, $descricao);
+    public function cadastraShow($local, $data, $hora, $preco, $descricao, $cantor, $tipoDeMusica) {
+        parent::CadastraEvento($local, $data, $hora, $preco, $descricao);
 
         $this->cantor = $cantor;
         $this->tipoDeMusica = $tipoDeMusica;
     }
-
-    public function ExibeUmShow($dadoFiltroShow){
-        echo "Show: \n";
-        if ($this->local==$dadoFiltroShow || $this->cantor==$dadoFiltroShow || $this->tipoDeMusica==$dadoFiltroShow){
-            foreach ($this as $key => $value) {
-                echo "Local: " . $this->local . "\n";
-                echo "Data: " . $this->data . "\n";
-                echo "Hora: " . $this->hora . "\n";
-                echo "Previsão de Público: " . $this->previsaoDePublico . "\n";
-                echo "Preço: " . $this->preco . "\n";
-                echo "Descrição: " . $this->descricao . "\n";
-                echo "Cantor: " . $this->cantor . "\n";
-                echo "Tipo de Música: " . $this->tipoDeMusica . "\n";
-                echo "------------------------------------------\n";
-            }
-        }else{
-            echo "Não encontrada";
-        }
-        
-    }
-    
-
-    public function ExibeTodosShow(){
-        echo "Show: \n";
-        foreach ($this as $value) {
-            echo "Local: " . $this->local . "\n";
-            echo "Data: " . $this->data . "\n";
-            echo "Hora: " . $this->hora . "\n";
-            echo "Previsão de Público: " . $this->previsaoDePublico . "\n";
-            echo "Preço: " . $this->preco . "\n";
-            echo "Descrição: " . $this->descricao . "\n";
-            echo "Cantor: " . $this->cantor . "\n";
-            echo "Tipo de Música: " . $this->tipoDeMusica . "\n";
-            echo "-------------------------------------------\n";
-
-        }
-        echo "-------------------------------------------\n";
-    }
 }
+
+
+class Palestra extends Evento{
+        // Atributos da classe Palestra
+        private $palestrante;
+        private $tema;
+    
+        public function getPalestrante() {
+            return $this->palestrante;
+        }
+    
+        public function setPalestrante($palestrante) {
+            $this->palestrante = $palestrante;
+        }
+    
+        public function getTema() {
+            return $this->tema;
+        }
+    
+        public function setTema($tema) {
+            $this->tema = $tema;
+        }
+   
+        // Construtor da classe
+       public function CadastrarPalestra($local, $data, $hora, $preco, $descricao, $palestrante, $tema) {
+           parent::CadastraEvento($local, $data, $hora, $preco, $descricao);
+   
+           $this->palestrante = $palestrante;
+           $this->tema = $tema;
+       }
+}
+   
+
